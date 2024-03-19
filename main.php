@@ -41,6 +41,22 @@ enum Suit: string
 
 $enum = Suit::Hearts;
 
+dump($enum->isHearts());
+dump($enum->isDiamonds());
+dump($enum->ifHearts(
+	then: fn () => 'hoge',
+	else: fn () => 'fuga',
+));
+dump($enum->ifDiamonds(
+	then: fn () => 'hoge',
+	else: fn () => 'fuga',
+));
+
+dump(Suit::names());
+dump(Suit::values());
+
 dump($enum->label());
+dump(Suit::labels());
+
 dump(Suit::casesOnly(['piyo', 'hoge']));
 dump(Suit::casesExcept(['hoge', 'piyo']));

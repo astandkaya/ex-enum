@@ -11,7 +11,7 @@ class Reflection
 
     public static function fetchData(string $enum_name): array
     {
-        enum_exists($enum_name) ?: throw new Exception('未定義');
+        enum_exists($enum_name) ?: throw new Exception('undifined Enum');
 
         if (isset(self::$cache[$enum_name])) {
             return self::$cache[$enum_name];
