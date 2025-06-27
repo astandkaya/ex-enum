@@ -3,6 +3,5 @@ parameters:
     # phpVersion: 80000
     paths: 
         - src
-    checkGenericClassInNonGenericObjectType: false
-    checkMissingIterableValueType: false
     ignoreErrors:
+        - identifier: missingType.iterableValue
