@@ -113,3 +113,37 @@ it('isXxx() 系ヘルパーが存在しないケースで例外を投げるこ�
 
     expect(fn() => $hearts->isUnknown())->toThrow(\ExEnum\Exceptions\CaseNotFoundException::class);
 });
+
+it('sortBy() で昇順にソートできること', function () {
+    $sorted = Suit::sortBy();
+
+    expect($sorted)->toBe([
+        Suit::Spades,
+        Suit::NoneExtension,
+        Suit::Hearts,
+        Suit::Diamonds,
+        Suit::Clubs,
+    ]);
+});
+it('sortByAsc() で昇順にソートできること', function () {
+    $sorted = Suit::sortByAsc();
+
+    expect($sorted)->toBe([
+        Suit::Spades,
+        Suit::NoneExtension,
+        Suit::Hearts,
+        Suit::Diamonds,
+        Suit::Clubs,
+    ]);
+});
+it('sortByDesc() で降順にソートできること', function () {
+    $sorted = Suit::sortByDesc();
+
+    expect($sorted)->toBe([
+        Suit::Clubs,
+        Suit::Diamonds,
+        Suit::Hearts,
+        Suit::NoneExtension,
+        Suit::Spades,
+    ]);
+});

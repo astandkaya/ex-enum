@@ -80,6 +80,28 @@ trait HasExtension
         return array_values($cases);
     }
 
+    public static function sortBy(): array
+    {
+        $data = Reflection::fetchData(static::class)['cases'];
+
+        usort($data, fn ($a, $b) => $a['order'] <=> $b['order']);
+
+        return array_map(
+            fn ($datum) => $datum['case'],
+            $data,
+        );
+    }
+
+    public static function sortByAsc(): array
+    {
+        return static::sortBy();
+    }
+
+    public static function sortByDesc(): array
+    {
+        return array_reverse(static::sortBy());
+    }
+
     private function callToIs(string $method_name): bool
     {
         $rm_is = substr($method_name, 2);
