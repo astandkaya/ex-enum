@@ -1,16 +1,16 @@
 {
-    "name": "astandkaya/[ここに名前]",
-    "description": "[ここに説明]",
+    "name": "astandkaya/ex-enum",
+    "description": "Extend PHP Enum",
     "type": "library",
     "keywords": [
     ],
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "[ここにソースとかネームスペースとか]\\": "src/[ここにソースとかネームスペースとか]"
+            "ExEnum\\": "src/ExEnum"
         },
         "files": [
-            "src/[ここにソースとかネームスペースとか]/helpers.php"
+            "src/ExEnum/helpers.php"
         ]
     },
     "autoload-dev": {
