@@ -139,7 +139,46 @@ Suit::casesExcept(['red']);
 // }
 ```
 
-### 4. Work with a single enum instance
+### Sort cases by *order*
+
+```php
+Suit::sortBy();
+// array(4) {
+//   [0]=>
+//   enum(Suit::Spades)
+//   [1]=>
+//   enum(Suit::Hearts)
+//   [2]=>
+//   enum(Suit::Diamonds)
+//   [3]=>
+//   enum(Suit::Clubs)
+// }
+
+Suit::sortByAsc();
+// array(4) {
+//   [0]=>
+//   enum(Suit::Spades)
+//   [1]=>
+//   enum(Suit::Hearts)
+//   [2]=>
+//   enum(Suit::Diamonds)
+//   [3]=>
+//   enum(Suit::Clubs)
+// }
+
+Suit::sortByDesc();
+// array(4) {
+//   [0]=>
+//   enum(Suit::Clubs)
+//   [1]=>
+//   enum(Suit::Diamonds)
+//   [2]=>
+//   enum(Suit::Hearts)
+//   [3]=>
+//   enum(Suit::Spades)
+// }
+```
+
 ### Work with a single enum instance
 
 ```php
@@ -159,9 +198,6 @@ $card->isDiamonds();
 
 | Method                               | Returns                               | Description                                    |
 |--------------------------------------|---------------------------------------|------------------------------------------------|
-| `order` Extension property           | int                                   | Order of the case in the enum                  |
-| `$card->order()`                     | int                                   | Get the order of a case                        |
-| `Suit::order()`                      | array                                 | Get the order of all cases                     |
 | `$card->hasTag('red')`               | bool                                  | Check if a case has a specific tag             |
 | `$card->hasTags(['red', 'black'])`   | bool                                  | Check if a case has all specified tags         |
 | `$card->tags()`                      | array                                 | Get all tags of a case                         |
