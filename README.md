@@ -118,7 +118,6 @@ Suit::labels();
 ### Filter cases by *tags*
 
 ```php
-// Only those tagged with `not_hearts`
 Suit::casesOnly(['not_hearts']);
 // array(3) {
 //   [0]=>
@@ -129,7 +128,6 @@ Suit::casesOnly(['not_hearts']);
 //   enum(Suit::Spades)
 // }
 
-// Everything **except** those tagged with `red`
 Suit::casesExcept(['red']);
 // array(2) {
 //   [0]=>
@@ -137,6 +135,21 @@ Suit::casesExcept(['red']);
 //   [1]=>
 //   enum(Suit::Spades)
 // }
+```
+
+### Check if a case has a tag
+```php
+$card = Suit::Hearts;
+
+$card->hasTag('red');
+// bool(true)
+$card->hasTag('not_hearts');
+// bool(false)
+
+$card->hasTags(['red', 'not_hearts']);
+// bool(true)
+$card->hasTags(['red', 'unknown']);
+// bool(false)
 ```
 
 ### Sort cases by *order*
@@ -198,9 +211,6 @@ $card->isDiamonds();
 
 | Method                               | Returns                               | Description                                    |
 |--------------------------------------|---------------------------------------|------------------------------------------------|
-| `$card->hasTag('red')`               | bool                                  | Check if a case has a specific tag             |
-| `$card->hasTags(['red', 'black'])`   | bool                                  | Check if a case has all specified tags         |
-| `$card->tags()`                      | array                                 | Get all tags of a case                         |
 | `Suit::map(fn($case) => …)`          | array                                 | Generic map over all cases                     |
 | `Suit::filter(fn($case) => …)`       | `static[]`                            | Generic filter over all cases                  |
 | `Suit::each(fn($case) => …)`         | void                                  | Iterate through all cases                      |

@@ -147,3 +147,41 @@ it('sortByDesc() で降順にソートできること', function () {
         Suit::Spades,
     ]);
 });
+
+it('hasTag() で指定されたタグを持つか確認できること', function () {
+    $hearts = Suit::Hearts;
+
+    expect($hearts->hasTag('red'))->toBeTrue();
+});
+it('hasTag() で指定されていないタグを持っていないか確認出来ること', function () {
+    $hearts = Suit::Hearts;
+
+    expect($hearts->hasTag('not_hearts'))->toBeFalse();
+    expect($hearts->hasTag('unknown_tag'))->toBeFalse();
+});
+
+it('hasTags() で指定されたタグを持つか確認できること', function () {
+    $diamonds = Suit::Diamonds;
+
+    expect($diamonds->hasTags(['red']))->toBeTrue();
+    expect($diamonds->hasTags(['red', 'not_hearts']))->toBeTrue();
+});
+it('hasTags() で指定されていないタグを持っていないか確認出来ること', function () {
+    $hearts = Suit::Hearts;
+
+    expect($hearts->hasTags(['not_hearts']))->toBeFalse();
+    expect($hearts->hasTags(['red', 'not_hearts']))->toBeFalse();
+    expect($hearts->hasTags(['unknown_tag']))->toBeFalse();
+});
+
+it('tags() でタグの配列を取得できること', function () {
+    $hearts = Suit::Hearts;
+
+    expect($hearts->tags())->toBe(['red']);
+});
+it('tags() で空のケースのタグを取得すると空配列を返すこと', function () {
+    $noneExtension = Suit::NoneExtension;
+
+    expect($noneExtension->tags())->toBe([]);
+});
+

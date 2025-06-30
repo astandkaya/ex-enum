@@ -80,6 +80,23 @@ trait HasExtension
         return array_values($cases);
     }
 
+    public function hasTag(string $tag_name): bool
+    {
+        return $this->hasTags([$tag_name]);
+    }
+
+    public function hasTags(array $tag_names): bool
+    {
+        return empty(
+            array_diff($tag_names, $this->tags())
+        );
+    }
+
+    public function tags(): array
+    {
+        return Reflection::fetchData(static::class)['cases'][$this->name]['tags'];
+    }
+
     public static function sortBy(): array
     {
         $data = Reflection::fetchData(static::class)['cases'];
