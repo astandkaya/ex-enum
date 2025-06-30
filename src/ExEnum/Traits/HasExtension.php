@@ -119,6 +119,31 @@ trait HasExtension
         return array_reverse(static::sortBy());
     }
 
+    public static function map(callable $callback): array
+    {
+        return array_map(
+            $callback,
+            static::cases(),
+        );
+    }
+
+    public static function reduce(callable $callback, mixed $initial = null): mixed
+    {
+        return array_reduce(
+            static::cases(),
+            $callback,
+            $initial,
+        );
+    }
+
+    public static function filter(callable $callback): array
+    {
+        return array_filter(
+            static::cases(),
+            $callback,
+        );
+    }
+
     private function callToIs(string $method_name): bool
     {
         $rm_is = substr($method_name, 2);

@@ -185,3 +185,25 @@ it('tags() で空のケースのタグを取得すると空配列を返すこと
     expect($noneExtension->tags())->toBe([]);
 });
 
+it('map() で全ケースをマッピングして取り出せること', function () {
+    $mapped = Suit::map(fn ($case) => $case->value);
+
+    expect($mapped)->toBe([
+        'none_extension',
+        'hearts',
+        'diamonds',
+        'clubs',
+        'spades',
+    ]);
+});
+it('reduce() で全ケースを畳み込むことができること', function () {
+    $reduced = Suit::reduce(fn ($carry, $case) => "{$carry}{$case->value}", '');
+
+    expect($reduced)->toBe('none_extensionheartsdiamondsclubsspades');
+});
+it('filter() で条件に合致するケースを取り出せること', function () {
+    $filtered = Suit::filter(fn ($case) => $case->hasTag('red'));
+
+    expect($filtered)->toHaveCount(2)
+        ->and($filtered)->toContain(Suit::Hearts, Suit::Diamonds);
+});

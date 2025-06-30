@@ -207,13 +207,38 @@ $card->isDiamonds();
 // bool(false)
 ```
 
+### Utility methods
+
+```php
+Suit::map(fn(Suit $suit) => $suit->label());
+// array(4) {
+//   [0]=>
+//   string(9) "ハート"
+//   [1]=>
+//   string(9) "ダイア"
+//   [2]=>
+//   string(9) "クラブ"
+//   [3]=>
+//   string(12) "スペード"
+// }
+
+Suit::reduce(fn(string $carry, Suit $suit) => $carry . $suit->label(), '');
+// string(39) "ハートダイアクラブスペード"
+
+Suit::filter(fn(Suit $suit) => $suit->hasTag('red'));
+// array(2) {
+// [0]=>
+// enum(Suit::Hearts)
+// [1]=>
+// enum(Suit::Diamonds)
+// }
+```
+
+
 ## Future implementation plans
 
 | Method                               | Returns                               | Description                                    |
 |--------------------------------------|---------------------------------------|------------------------------------------------|
-| `Suit::map(fn($case) => …)`          | array                                 | Generic map over all cases                     |
-| `Suit::filter(fn($case) => …)`       | `static[]`                            | Generic filter over all cases                  |
-| `Suit::each(fn($case) => …)`         | void                                  | Iterate through all cases                      |
 | `Suit::random()`                     | `static`                              | Pick a random case                             |
 | `Suit::toArray()`                    | array `[name => value, …]`            | Enum to associative array                      |
 | `Suit::jsonSerialize()`              | same as `toArray()`                   | JSON-ready representation                      |
